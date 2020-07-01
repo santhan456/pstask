@@ -15,7 +15,8 @@ export interface State {
 
 const defaultState: State = {
   data: [],
-  isLoading: false
+  isLoading: false,
+  page: "1"
 };
 
 const reducer = function (state: State = defaultState, action: any) {
