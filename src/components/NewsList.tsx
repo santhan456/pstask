@@ -9,7 +9,7 @@ interface Props{
 
 interface DispatchProps{
   hideNews(objectID: number): void;
-  upVoteNews(index: number): void;
+  upVoteNews(objectID: number): void;
 }
 
 const NewsListImpl: React.FunctionComponent<Props & DispatchProps> = (props) => {
@@ -19,15 +19,15 @@ const NewsListImpl: React.FunctionComponent<Props & DispatchProps> = (props) => 
       hideNews(objectID);
     }
 
-    const upVote = (index: number) => {
-      upVoteNews(index);
+    const upVote = (objectID: number) => {
+      upVoteNews(objectID);
     }
     
     return <>
     {news.map((news, index) => <tr key={news.objectID}>
             <td>{news.num_comments}</td>
             <td>{news.points}</td>
-            <td> <span className="up-vote" onClick={() => upVote(index)}>&#x25B2;</span></td>
+            <td> <span className="up-vote" onClick={() => upVote(news.objectID)}>&#x25B2;</span></td>
             <td>
               {news.title}
              {news.url && <a className="url" target="_blank" href={news.url}>({news.url})</a>  }

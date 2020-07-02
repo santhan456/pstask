@@ -5,7 +5,7 @@ import {
   HIDE_NEWS,
   UPVOTE_NEWS,
 } from "./actions";
-import NewsList from "../components/NewsList";
+import { setHideNews, setUpVotes } from "./localstorage";
 
 export interface State {
   data: any[];
@@ -26,12 +26,14 @@ const reducer = function (state: State = defaultState, action: any) {
         ...state,
         isLoading: true,
       };
-    case FETCH_NEWS_SUCCESS:
+    case FETCH_NEWS_SUCCESS:{
+      
       return {
-        ...state,
-        data: action.data,
-        isLoading: false,
-    };
+          ...state,
+          data: action.data,
+          isLoading: false,
+      };
+    }
     case UPDATE_PAGE:
       return {
         ...state,
@@ -41,6 +43,7 @@ const reducer = function (state: State = defaultState, action: any) {
       const newList = [...state.data];
       const index = newList.findIndex((news) => action.objectID === news.objectID);
       newList[index] = {...newList[index], hide: true};
+      setHideNews(action.objectID);
       return {
         ...state,
         data: newList
@@ -48,10 +51,12 @@ const reducer = function (state: State = defaultState, action: any) {
     }
     case UPVOTE_NEWS: {
       const newList = [...state.data];
-      newList[action.index].points++;
+      const index = newList.findIndex((news) => action.objectID === news.objectID);
+      newList[index].points++;
+      setUpVotes(action.objectID, newList[index].points);
       return {
         ...state,
-        data: newList
+        data: [...newList]
       }
     }
     default:

@@ -39,9 +39,9 @@ export function hideNews(objectID: number) {
   };
 }
 
-export function upVoteNews(index: number){
+export function upVoteNews(objectID: number){
   return {
     type: UPVOTE_NEWS,
-    index
+    objectID
   };
 }
