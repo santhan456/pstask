@@ -15,7 +15,7 @@
     "@types/react-router": "^5.1.8",
     "@types/react-router-dom": "^5.1.5",
     "@types/redux": "^3.6.0",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "query-string": "^6.13.1",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.9.0",
